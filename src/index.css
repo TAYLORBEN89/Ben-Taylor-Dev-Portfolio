@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-scroll: scroll 40s linear infinite;
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Custom keyframes for retro mascot character */
+@keyframes charFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(1deg);
+  }
+}
+
+@keyframes legSwingLeft {
+  0%, 100% {
+    transform: rotate(-10deg);
+    transform-origin: 16px 39px;
+  }
+  50% {
+    transform: rotate(15deg);
+    transform-origin: 16px 39px;
+  }
+}
+
+@keyframes legSwingRight {
+  0%, 100% {
+    transform: rotate(15deg);
+    transform-origin: 28px 39px;
+  }
+  50% {
+    transform: rotate(-10deg);
+    transform-origin: 28px 39px;
+  }
+}
+
+.animate-char-float {
+  animation: charFloat 1.8s ease-in-out infinite;
+}
+
+.animate-leg-left {
+  animation: legSwingLeft 0.5s ease-in-out infinite;
+}
+
+.animate-leg-right {
+  animation: legSwingRight 0.5s ease-in-out infinite;
+}
+
+/* Print/View optimization utilities */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  header, footer, #customizer-box, #marquee-banner, #event-schedule-section {
+    display: none !important;
+  }
+  #ticket-workspace {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+  #physical-ticket-card {
+    border: 1px solid black !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
+

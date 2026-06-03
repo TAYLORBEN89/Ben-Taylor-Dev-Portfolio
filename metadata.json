@@ -1,0 +1,6 @@
+{
+  "name": "Ben Taylor Dev Portfolio",
+  "description": "An interactive, high-fidelity developer portfolio showcasing active projects, featuring a holographic badge visualizer and live deployment schedule.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
