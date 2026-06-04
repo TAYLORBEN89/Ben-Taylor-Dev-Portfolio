@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
 @import "tailwindcss";
 
 @theme {
   --animate-scroll: scroll 40s linear infinite;
+  --font-mono: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-retro: "VT323", monospace;
 
   @keyframes scroll {
     0% {

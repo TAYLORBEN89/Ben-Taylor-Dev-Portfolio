@@ -125,11 +125,11 @@ export default function EventSchedule() {
                 { val: timeLeft.minutes, unit: 'M' },
                 { val: timeLeft.seconds, unit: 'S' }
               ].map((time, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  <span className="bg-zinc-900 border border-zinc-850 px-2 py-1 rounded min-w-[34px] text-center font-mono text-sm font-bold text-white tracking-tight">
+                <div key={idx} className="flex flex-col items-center animate-pulse-slow">
+                  <span className="bg-black border border-green-500/20 px-2.5 py-1 rounded min-w-[38px] text-center font-retro text-lg text-lime-400 shadow-[0_0_10px_rgba(132,204,22,0.15)] select-none">
                     {String(time.val).padStart(2, '0')}
                   </span>
-                  <span className="text-[8px] font-mono mt-0.5 text-zinc-600 uppercase">{time.unit}</span>
+                  <span className="text-[7.5px] font-mono mt-1 text-zinc-500 uppercase tracking-wider">{time.unit}</span>
                 </div>
               ))}
             </div>

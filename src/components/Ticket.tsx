@@ -124,7 +124,7 @@ export default function Ticket({ data, loading = false }: TicketProps) {
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`relative overflow-hidden w-full aspect-[16/9] sm:aspect-[2.1/1] rounded-2xl border ${style.borderColor} bg-gradient-to-br ${style.cardBg} backdrop-blur-md text-white transition-all duration-300 transform select-none cursor-grab active:cursor-grabbing ${style.glowShadow}`}
+        className={`relative overflow-hidden w-full min-h-[340px] sm:min-h-[420px] md:min-h-[460px] rounded-2xl border ${style.borderColor} bg-gradient-to-br ${style.cardBg} backdrop-blur-md text-white transition-all duration-300 transform select-none cursor-grab active:cursor-grabbing ${style.glowShadow} flex flex-col`}
         style={{
           transform: isHovered
             ? `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale3d(1.03, 1.03, 1.03)`
@@ -171,62 +171,55 @@ export default function Ticket({ data, loading = false }: TicketProps) {
         </div>
 
         {/* Main Content (Divided into Left Platform [72%] and Right Ticket Claim [28%]) */}
-        <div className="flex h-full w-full">
+        <div className="flex w-full flex-1 min-h-[340px] sm:min-h-[420px] md:min-h-[460px] items-stretch">
           {/* Main Workspace Frame (Left) */}
-          <div className="w-[70%] sm:w-[72%] h-full p-4 sm:p-6 flex flex-col justify-between relative">
+          <div className="w-[70%] sm:w-[72%] p-5 sm:p-7 flex flex-col justify-between relative">
             
             {/* Header: Branding Info */}
             <div className="flex items-start justify-between">
-              <div className="flex items-center gap-2">
-                <TicketIcon className={`w-5 h-5 ${style.accentColor}`} />
-                <span className="font-mono text-xs font-semibold tracking-[0.3em] uppercase">B-TAYLOR 2026</span>
+              <div className="flex items-center gap-2.5">
+                <TicketIcon className={`w-6 h-6 ${style.accentColor}`} />
+                <span className="font-mono text-sm sm:text-base font-bold tracking-[0.3em] uppercase">B-TAYLOR 2026</span>
               </div>
-              <div className={`px-2 py-0.5 rounded border font-mono text-[9px] uppercase tracking-wider ${style.badgeBg}`}>
+              <div className={`px-2.5 py-1 rounded border font-mono text-[10px] sm:text-xs uppercase tracking-wider ${style.badgeBg}`}>
                 {data.accessLevel || 'CLASSIFIED_ROOT_VIP'}
               </div>
             </div>
 
             {/* Middle: AI Custom Generated Specialty Badge Title */}
-            <div className="my-3 sm:my-4">
-              <div className="flex items-center gap-1.5 mb-1">
-                <span className={`text-[10px] font-mono tracking-widest uppercase text-zinc-500`}>Biometric Craft Title</span>
-                <Sparkles className={`w-3 h-3 ${style.accentColor} animate-pulse`} />
+            <div className="my-4 sm:my-5">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className={`text-xs sm:text-sm font-mono tracking-widest uppercase text-zinc-500`}>Biometric Craft Title</span>
+                <Sparkles className={`w-4 h-4 ${style.accentColor} animate-pulse`} />
               </div>
-              <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-tight text-white uppercase line-clamp-2 max-w-[90%] leading-tight font-sans">
+              <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight text-white uppercase leading-tight font-sans">
                 {data.badgeTitle || "UNVERIFIED PROTOCOL SHAPER"}
               </h2>
-              <p className="text-[10px] sm:text-xs text-zinc-400 mt-1 sm:mt-1.5 font-mono line-clamp-1 italic max-w-md">
+              <p className="text-xs sm:text-sm md:text-base text-zinc-300 mt-2 font-mono italic leading-relaxed">
                 "{data.badgeMotto || "Initiate custom AI compilation for personal neural credentials."}"
               </p>
             </div>
 
             {/* Footer: User Identity Credentials */}
-            <div className="flex items-center gap-3 border-t border-zinc-800/50 pt-2.5 sm:pt-4">
-              {/* Profile Avatar Frame */}
-              <div className="relative">
-                <div className={`absolute -inset-0.5 rounded-full bg-gradient-to-tr opacity-75 blur-[2px] ${
-                  data.theme === 'holo' ? 'from-fuchsia-500 to-blue-500' :
-                  data.theme === 'solar' ? 'from-amber-500 to-red-500' :
-                  data.theme === 'obsidian' ? 'from-zinc-500 to-zinc-800' :
-                  'from-lime-500 to-emerald-500'
-                }`} />
-                <img
-                  referrerPolicy="no-referrer"
-                  src={data.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150"}
-                  alt={data.name}
-                  className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-black object-cover bg-zinc-900"
-                />
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border border-black rounded-full" />
+            <div className="flex items-center gap-4 border-t border-zinc-800/50 pt-3 sm:pt-4">
+              {/* Biometric Technical Node Symbol */}
+              <div className={`p-2 rounded-lg border bg-zinc-900/60 shrink-0 ${
+                data.theme === 'holo' ? 'text-fuchsia-400 border-fuchsia-500/20' :
+                data.theme === 'solar' ? 'text-amber-400 border-amber-500/20' :
+                data.theme === 'obsidian' ? 'text-zinc-400 border-zinc-700/30' :
+                'text-lime-400 border-lime-500/20'
+              }`}>
+                <Cpu className="w-6 h-6 sm:w-7 sm:h-7 animate-pulse shrink-0" />
               </div>
 
               {/* Text Credentials */}
               <div className="min-w-0">
-                <p className="text-xs sm:text-sm font-bold text-white tracking-wide truncate max-w-[150px] sm:max-w-xs">{data.name || "Anonymous Captain"}</p>
-                <div className="flex items-center gap-1.5 mt-0.5 text-[9px] sm:text-xs font-mono text-zinc-400">
-                  <span className="truncate max-w-[120px]">{data.role || "Biometric Entity"}</span>
+                <p className="text-sm sm:text-base md:text-lg font-bold text-white tracking-wide">{data.name || "Anonymous Captain"}</p>
+                <div className="flex items-center gap-2 mt-1 text-[11px] sm:text-xs md:text-sm font-mono text-zinc-400">
+                  <span className="font-semibold">{data.role || "Full Stack Developer"}</span>
                   <span className="text-zinc-600">•</span>
-                  <div className="flex items-center gap-0.5 text-zinc-500">
-                    <span className="text-[10px] font-mono">{data.visualSymbol || "✦"}</span>
+                  <div className="flex items-center gap-1 text-zinc-500">
+                    <span className="text-xs sm:text-sm font-mono">{data.visualSymbol || "✦"}</span>
                   </div>
                 </div>
               </div>
@@ -234,17 +227,17 @@ export default function Ticket({ data, loading = false }: TicketProps) {
           </div>
 
           {/* Tear-off Ticket Stub Frame (Right) */}
-          <div className="w-[30%] sm:w-[28%] h-full p-3 sm:p-5 flex flex-col justify-between items-center text-center relative bg-black/10">
+          <div className="w-[30%] sm:w-[28%] p-3.5 sm:p-5 flex flex-col justify-between items-center text-center relative bg-black/15">
             {/* Visual Header Dials */}
             <div className="w-full flex justify-between items-center px-1">
               <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-              <span className="font-mono text-[8px] sm:text-[9px] text-zinc-500 uppercase tracking-widest leading-none">CLAIM PASS</span>
+              <span className="font-mono text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest leading-none">CLAIM PASS</span>
               <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
             </div>
 
             {/* Middle: Graphic Visual Micro Barcode */}
-            <div className="flex flex-col items-center justify-center my-1.5">
-              <div className="flex items-end justify-center h-10 sm:h-12 gap-[1px] md:gap-[2px] bg-white/[0.03] p-1.5 rounded border border-white/5 opacity-85 hover:opacity-100 transition-opacity">
+            <div className="flex flex-col items-center justify-center my-1">
+              <div className="flex items-end justify-center h-8 sm:h-10 gap-[1px] md:gap-[2px] bg-white/[0.03] p-1.5 rounded border border-white/5 opacity-85 hover:opacity-100 transition-opacity">
                 {barcodeLines.map((spacing, idx) => (
                   <div
                     key={idx}
@@ -253,16 +246,38 @@ export default function Ticket({ data, loading = false }: TicketProps) {
                   />
                 ))}
               </div>
-              <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.25em] text-zinc-500 mt-1">{data.ticketNumber || '#004812'}</span>
+              <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.25em] text-zinc-400 mt-1">{data.ticketNumber || '#001776'}</span>
+            </div>
+
+            {/* Holographic User Photo (Larger and under barcode) */}
+            <div className="relative my-1 shrink-0">
+              <div className={`absolute -inset-0.5 rounded-lg bg-gradient-to-tr opacity-75 blur-[2.5px] ${
+                data.theme === 'holo' ? 'from-fuchsia-500 to-blue-500' :
+                data.theme === 'solar' ? 'from-amber-500 to-red-500' :
+                data.theme === 'obsidian' ? 'from-zinc-500 to-zinc-800' :
+                'from-lime-500 to-emerald-500'
+              }`} />
+              <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border border-black/40 bg-zinc-950">
+                <img
+                  referrerPolicy="no-referrer"
+                  src={data.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150"}
+                  alt={data.name}
+                  className="w-full h-full object-cover"
+                />
+                {/* Holographic scanner line animation */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/15 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-[1.5px] bg-sky-400/55 animate-bounce pointer-events-none" />
+              </div>
+              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border border-slate-950 rounded-full flex items-center justify-center shadow-[0_0_6px_rgba(34,197,94,0.7)] animate-pulse" />
             </div>
 
             {/* Footer Dials & Credentials */}
             <div className="w-full">
-              <div className="flex items-center justify-center gap-1 font-mono text-[8px] sm:text-[9px] text-zinc-400 mt-1">
+              <div className="flex items-center justify-center gap-1 font-mono text-[8px] sm:text-[9px] text-zinc-300">
                 <Calendar className="w-2.5 h-2.5 text-zinc-500" />
-                <span>{data.claimDate || '06.03.2026'}</span>
+                <span className="font-semibold">{data.claimDate || '06.03.2026'}</span>
               </div>
-              <div className="text-[7.5px] font-mono text-zinc-600 mt-0.5 leading-none tracking-widest uppercase">
+              <div className="text-[7.5px] sm:text-[8.5px] font-mono text-zinc-500 mt-1 leading-none tracking-widest uppercase">
                 UTC TIME NODE
               </div>
             </div>
