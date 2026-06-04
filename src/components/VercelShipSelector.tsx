@@ -19,12 +19,14 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
         
         {/* VERCEL SHIP NAV COMPOSER BOARD */}
         <div className="border border-zinc-800 rounded-3xl bg-[#030303] overflow-hidden shadow-2xl relative">
+          {/* Subtle all-over subtle pixel grid overlay */}
+          <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-[0.15] z-0" />
           
           {/* Header Bar */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-900 bg-black/90">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400">CHOOSE YOUR PROJECT:</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400">PROJECTS:</span>
             </div>
             
             {/* Dynamic Ship LOGO based on hovered code */}
@@ -54,15 +56,23 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                         setHoveredIndex(index);
                         if (onSelectItem) onSelectItem(item);
                       }}
-                      className={`relative w-full transition-all duration-150 select-none border-2 ${
+                      className={`relative w-full transition-all duration-150 select-none border-2 overflow-hidden ${
                         isHovered 
-                          ? 'bg-[#0a0a0a] border-lime-400 z-10 shadow-[0_0_20px_rgba(132,204,22,0.3)] scale-[1.01]' 
+                          ? 'bg-gradient-to-r from-lime-500/5 via-lime-500/[0.01] to-transparent border-lime-400 z-10 shadow-[0_0_20px_rgba(132,204,22,0.3)] scale-[1.01]' 
                           : 'bg-transparent border-zinc-900/40'
                       }`}
                       id={`vercel-ship-row-${item.id}`}
                     >
+                      {/* Retro dither shadow overlay inside the hovered row to create textured shading */}
+                      {isHovered && (
+                        <>
+                          <div className="absolute inset-0 pointer-events-none bg-dither-light opacity-30 z-0" />
+                          <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-[0.25] z-0" />
+                        </>
+                      )}
+
                       {/* Flex wrapper for the big text line */}
-                      <div className="flex items-center justify-between pr-4 md:pr-10">
+                      <div className="flex items-center justify-between pr-4 md:pr-10 relative z-10">
                         <div 
                           onClick={() => {
                             const url = item.subtext.startsWith('http') ? item.subtext : `https://${item.subtext}`;

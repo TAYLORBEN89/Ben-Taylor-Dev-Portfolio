@@ -136,6 +136,12 @@ export default function Ticket({ data, loading = false }: TicketProps) {
         {/* Ambient Overlay Layer for Mesh Pattern */}
         <div className={`absolute inset-0 pointer-events-none ${style.meshColor}`} />
 
+        {/* Authentically dithered retro overlay layer */}
+        <div className="absolute inset-0 pointer-events-none bg-dither-light opacity-[0.25] z-10" />
+
+        {/* Crisp Pixel Grid Overlay on Backgrounds */}
+        <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-[0.35] z-10" />
+
         {/* Neural Loading / Processing Overlay */}
         {loading && (
           <div className="absolute inset-0 bg-black/85 backdrop-blur-sm z-35 flex flex-col items-center justify-center transition-opacity duration-300">

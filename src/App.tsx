@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TicketData, VercelShipItem } from './types';
 // @ts-ignore
-import benTaylorAvatar from './assets/images/ben_taylor_avatar_1780529261469.png';
+import myAvatar from './assets/images/my_avatar.jpeg';
 import Ticket from './components/Ticket';
 import EventSchedule from './components/EventSchedule';
 import Marquee from './components/Marquee';
@@ -17,14 +17,14 @@ export default function App() {
     role: 'Full Stack Developer',
     skills: 'React, Node.js, Cloud APIs',
     interest: 'Autonomous Agents & Custom UI',
-    avatarUrl: benTaylorAvatar,
+    avatarUrl: myAvatar,
     ticketNumber: '#001776',
     claimDate: new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }),
     accessLevel: 'DECK_VIP',
     badgeTitle: 'ELITE INTERNET STACK ENGINEER',
     badgeMotto: 'Orchestrating bespoke full-stack landing pages, Google Play designs, and serverless architectures.',
     visualSymbol: '✦',
-    theme: 'holo'
+    theme: 'laser'
   });
 
   // Dynamic content for Vercel Ship clone menu selector
@@ -38,24 +38,32 @@ export default function App() {
 
   // Sync ticket content on project item selections
   const handleSelectShipItem = (item: VercelShipItem) => {
-    let themeToUse: 'holo' | 'solar' | 'obsidian' | 'laser' = 'holo';
-    if (item.code === 'TDMP') themeToUse = 'solar';
-    if (item.code === 'KRL') themeToUse = 'obsidian';
-    if (item.code === 'SHAG') themeToUse = 'laser';
-    if (item.code === 'WAVY') themeToUse = 'holo';
-
     setTicket((prev) => ({
       ...prev,
       role: `Full Stack Developer`,
       claimDate: `DEPLOYED`,
       accessLevel: `${item.code}_DECK_VIP`,
-      theme: themeToUse
+      theme: 'laser'
     }));
   };
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-lime-500 selection:text-black overflow-x-hidden font-sans">
       
+      {/* Custom Header Graphic Banner (Using the whole image) */}
+      <div className="w-full h-44 sm:h-60 md:h-72 lg:h-80 relative overflow-hidden border-b border-zinc-900 select-none bg-zinc-950 flex items-end">
+        <img 
+          src={myAvatar} 
+          alt="Ben Taylor Banner Graphic" 
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-75 filter contrast-125 saturate-50 brightness-75 transition-all duration-300"
+          referrerPolicy="no-referrer"
+        />
+        {/* Aesthetic retro scan-lines and dither grid overlays to integrate design tightly */}
+        <div className="absolute inset-0 pointer-events-none bg-dither-light opacity-30 z-10" />
+        <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+      </div>
+
       {/* Visual background ambient details */}
       <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-lime-500/5 rounded-full blur-[120px] pointer-events-none z-0" />
       <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none z-0" />
@@ -64,11 +72,6 @@ export default function App() {
       <header className="border-b border-zinc-900/60 bg-black/80 backdrop-blur-md relative z-40 sticky top-0" id="header-bar">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-lime-400 to-emerald-500 p-[1.5px] flex items-center justify-center">
-              <div className="w-full h-full bg-black rounded-lg flex items-center justify-center">
-                <Cpu className="w-4 h-4 text-lime-400 animate-pulse" />
-              </div>
-            </div>
             <div>
               <span className="font-extrabold text-sm tracking-widest text-white block uppercase">BEN TAYLOR DEV PORTFOLIO</span>
               <span className="text-[9px] font-mono text-zinc-500 tracking-wider uppercase block">Creative Engineering • 2026</span>
@@ -94,15 +97,7 @@ export default function App() {
             <span className="text-center">Full stack landing pages, Google Play apps, backend curation & database API integrations</span>
           </div>
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-lime-500/5 rounded-full border border-lime-400/25 text-lime-300 font-mono text-[11px] sm:text-xs md:text-xs uppercase tracking-wider mx-auto font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-lime-400 animate-spin shrink-0" />
-            <span>Interactive event credential token — Hover on layout for 3D holographic reflect</span>
-          </div>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/5 rounded-full border border-amber-500/20 text-amber-300 font-mono text-[11px] sm:text-xs md:text-xs uppercase tracking-wider mx-auto font-semibold">
-            <ShieldAlert className="w-3.5 h-3.5 text-amber-500 animate-pulse shrink-0" />
-            <span>Political Satire for comical entertainment. We remain politically neutral.</span>
-          </div>
         </div>
         
         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-none text-white font-sans max-w-5xl mx-auto mb-2 bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400">
@@ -110,7 +105,7 @@ export default function App() {
         </h1>
         
         <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-mono max-w-3xl mx-auto mt-6 leading-relaxed">
-          Inspired by the flawless high-fidelity pixel style of <span className="text-white hover:underline cursor-pointer">vercel.com/ship</span>. Deploying stellar custom applications, specialized backends, and responsive mobile interfaces with robust data layers.
+          Designing and deploying stellar custom applications, business landing pages, responsive mobile interfaces, seamlessly synced data, and user-friendly content management portals.
         </p>
 
         {/* Counter quick metrics list */}
@@ -190,8 +185,9 @@ export default function App() {
       {/* Decorative Interactive Terminal Box / Playful interaction */}
       <section className="max-w-4xl mx-auto px-4 pb-16">
         <div className="bg-[#030303] border border-zinc-800 rounded-2xl p-6 text-zinc-400 font-mono text-xs shadow-2xl relative overflow-hidden">
-          {/* Subtle Scanline CRT Effect overlay */}
+          {/* Subtle Scanline CRT Effect overlay + Retro dithered gradient pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[size:100%_4px] pointer-events-none opacity-20" />
+          <div className="absolute inset-0 pointer-events-none bg-dither-light opacity-[0.16] z-0" />
           
           <div className="flex items-center gap-2 border-b border-zinc-900 pb-3 mb-4 relative z-10">
             <Terminal className="w-4 h-4 text-lime-400 animate-pulse" />
