@@ -8,6 +8,7 @@ import VercelShipSelector from './components/VercelShipSelector';
 export default function App() {
   // Dynamic content for Vercel Ship clone menu selector
   const shipItems: VercelShipItem[] = [
+    { id: '6', title: 'MWD Pro', subtext: 'compessential.com', code: 'MWD' },
     { id: '1', title: 'Hey Austin', subtext: 'heyaustin.vercel.app', code: 'HAY' },
     { id: '2', title: 'Trumpty Dumpty', subtext: 'trumptydumpty.vercel.app', code: 'TDMP' },
     { id: '3', title: 'Karolying Leavitt', subtext: 'karolyingleavitt.vercel.app', code: 'KRL' },
