@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { VercelShipItem } from '../types';
-import { Info } from 'lucide-react';
 
 interface VercelShipSelectorProps {
   items: VercelShipItem[];
@@ -14,18 +13,18 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
   const activeItem = items[hoveredIndex] || items[0] || { id: '0', title: 'Ship', subtext: '', code: 'S' };
 
   return (
-    <div className="w-full text-white py-10 px-4 md:px-8" id="vercel-ship-selector-component">
+    <div className="w-full text-white pt-0 pb-10 px-4 md:px-8" id="vercel-ship-selector-component">
       <div className="w-full mx-auto">
         
         {/* VERCEL SHIP NAV COMPOSER BOARD */}
-        <div className="border border-zinc-800 rounded-3xl bg-[#030303] overflow-hidden shadow-2xl relative">
+        <div className="relative">
           {/* Subtle all-over subtle pixel grid overlay */}
-          <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-[0.15] z-0" />
+          <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-[0.10] z-0" />
           
           {/* Header Bar */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-900 bg-black/90">
+          <div className="flex items-center justify-between py-5 border-b border-zinc-900 bg-transparent relative z-10">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400">PROJECTS:</span>
             </div>
             
@@ -45,7 +44,7 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                 No checkpoints found inside current register.
               </div>
             ) : (
-              <div className="relative border-b border-zinc-900">
+              <div className="relative border-b border-zinc-900/60">
                 {items.map((item, index) => {
                   const isHovered = hoveredIndex === index;
 
@@ -58,18 +57,11 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                       }}
                       className={`relative w-full transition-all duration-150 select-none border-2 overflow-hidden ${
                         isHovered 
-                          ? 'bg-gradient-to-r from-lime-500/5 via-lime-500/[0.01] to-transparent border-lime-400 z-10 shadow-[0_0_20px_rgba(132,204,22,0.3)] scale-[1.01]' 
+                          ? 'bg-transparent border-white z-10 scale-[1.01]' 
                           : 'bg-transparent border-zinc-900/40'
                       }`}
                       id={`vercel-ship-row-${item.id}`}
                     >
-                      {/* Retro dither shadow overlay inside the hovered row to create textured shading */}
-                      {isHovered && (
-                        <>
-                          <div className="absolute inset-0 pointer-events-none bg-dither-light opacity-30 z-0" />
-                          <div className="absolute inset-0 pointer-events-none pixel-grid-overlay opacity-[0.25] z-0" />
-                        </>
-                      )}
 
                       {/* Flex wrapper for the big text line */}
                       <div className="flex items-center justify-between pr-4 md:pr-10 relative z-10">
@@ -84,12 +76,12 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                           {/* Static interactive list line matching video */}
                           <h3 className={`font-retro tracking-wide text-3xl sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-300 leading-none uppercase ${
                             isHovered ? 'text-white opacity-100' : 'text-zinc-500 opacity-40'
-                          } group-hover/link:text-lime-400`}>
+                          } group-hover/link:text-white`}>
                             {item.title}
                           </h3>
                           <span className={`font-mono font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-normal transition-all duration-300 opacity-80 ${
                             isHovered ? 'text-zinc-400 opacity-100' : 'text-zinc-650 opacity-20'
-                          } group-hover/link:text-white truncate`}>
+                          } group-hover/link:text-zinc-100 truncate`}>
                             — {item.subtext}
                           </span>
                         </div>
@@ -142,13 +134,7 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
             )}
           </div>
 
-          {/* Inline footer details info link */}
-          <div className="px-6 py-4 bg-zinc-950/90 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-900">
-            <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-[11px] mx-auto sm:mx-0">
-              <Info className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Hover rows to scan credentials & load projects instantly.</span>
-            </div>
-          </div>
+
 
         </div>
 
