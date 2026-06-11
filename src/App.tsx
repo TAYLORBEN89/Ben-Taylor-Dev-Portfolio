@@ -51,7 +51,7 @@ export default function App() {
       </header>
 
       {/* Hero Header Space */}
-      <section className="relative z-10 pt-16 pb-0 px-4 max-w-5xl mx-auto text-center" id="hero-title-segment">
+      <section className="relative z-10 pt-6 sm:pt-8 pb-0 px-4 max-w-5xl mx-auto text-center" id="hero-title-segment">
         <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-mono max-w-3xl mx-auto leading-relaxed">
           Designing and deploying stellar custom applications, business landing pages, responsive mobile interfaces, seamlessly synced data, and user-friendly content management portals.
         </p>
