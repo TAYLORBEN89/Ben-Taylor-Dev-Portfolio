@@ -4,6 +4,7 @@ import { VercelShipItem } from './types';
 import myAvatar from './assets/images/my_avatar.jpg';
 import Marquee from './components/Marquee';
 import VercelShipSelector from './components/VercelShipSelector';
+import { Download } from 'lucide-react';
 
 export default function App() {
   // Dynamic content for Vercel Ship clone menu selector
@@ -56,6 +57,32 @@ export default function App() {
         <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-mono max-w-3xl mx-auto leading-relaxed">
           Designing and deploying stellar custom applications, business landing pages, responsive mobile interfaces, seamlessly synced data, and user-friendly content management portals.
         </p>
+      </section>
+
+      {/* Google Play Store Banner */}
+      <section className="relative z-10 pt-8 pb-4 px-4 max-w-4xl mx-auto" id="play-store-promotional-banner">
+        <div className="bg-zinc-950/40 backdrop-blur-md border border-zinc-900 rounded-lg p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-zinc-800 transition-all duration-300">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-lime-400 bg-lime-950/40 px-2.5 py-1 rounded border border-lime-900/30 mb-3">
+              NOW ON THE GOOGLE PLAY STORE
+            </span>
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+              MWD Pro: Training Essentials
+            </h3>
+            <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+              Elevate your tactical preparation on Android devices.
+            </p>
+          </div>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.mwdpro.app&utm_source=na_Med"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 bg-white text-black hover:bg-lime-400 hover:text-black transition-all duration-200 font-mono text-xs font-bold uppercase px-5 py-3 rounded tracking-wider shadow-lg active:scale-95 group shrink-0"
+          >
+            <Download className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+            <span>Download</span>
+          </a>
+        </div>
       </section>
 
       {/* RENDER DYNAMIC VERCEL SHIP PORTFOLIO BOARD */}
