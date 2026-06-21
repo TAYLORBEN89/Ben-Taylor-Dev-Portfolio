@@ -2,6 +2,8 @@ import React from 'react';
 import { VercelShipItem } from './types';
 // @ts-ignore
 import myAvatar from './assets/images/my_avatar.jpg';
+// @ts-ignore
+import googlePlayBadge from './utils/google-play-badge.png';
 import Marquee from './components/Marquee';
 import VercelShipSelector from './components/VercelShipSelector';
 import { Download } from 'lucide-react';
@@ -77,10 +79,14 @@ export default function App() {
             href="https://play.google.com/store/apps/details?id=com.mwdpro.app&utm_source=na_Med"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 bg-white text-black hover:bg-lime-400 hover:text-black transition-all duration-200 font-mono text-xs font-bold uppercase px-5 py-3 rounded tracking-wider shadow-lg active:scale-95 group shrink-0"
+            className="block h-12 hover:scale-[1.03] active:scale-95 transition-all duration-200 shrink-0 select-none"
           >
-            <Download className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-            <span>Download</span>
+            <img 
+              src={googlePlayBadge} 
+              alt="Get it on Google Play" 
+              className="h-full w-auto object-contain rounded-md border border-zinc-900 hover:border-zinc-800 transition-all duration-200" 
+              referrerPolicy="no-referrer"
+            />
           </a>
         </div>
       </section>
