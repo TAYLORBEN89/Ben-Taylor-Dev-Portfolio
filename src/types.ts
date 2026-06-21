@@ -38,5 +38,6 @@ export interface VercelShipItem {
   title: string;
   subtext: string;
   code: string;
+  playStoreUrl?: string;
 }
 

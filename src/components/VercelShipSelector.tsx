@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { VercelShipItem } from '../types';
+// @ts-ignore
+import googlePlayBadge from '../utils/google-play-badge.png';
 
 interface VercelShipSelectorProps {
   items: VercelShipItem[];
@@ -86,44 +88,66 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                           </span>
                         </div>
 
-                        {/* Character Mascot on right side */}
-                        <div className="flex items-center gap-3 shrink-0 h-16 relative">
-                          {/* MASCOT CHOP: Appears when index is hovered exactly like in Vercel video! */}
-                          {isHovered ? (
-                            <div className="mr-2 sm:mr-6 animate-char-float filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300" id="character-mascot-icon">
-                              <svg
-                                className="w-10 h-10 sm:w-12 sm:h-12 text-white"
-                                viewBox="0 0 48 48"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                {/* Walk cycle / bouncy antenna line */}
-                                <path d="M37 14 L30 19" />
-                                <circle cx="38" cy="12" r="2" fill="white" className="animate-pulse" />
-                                
-                                {/* Computer Screen Frame (Styled like retro Vercel box mascot) */}
-                                <rect x="8" y="19" width="28" height="20" rx="4" fill="#000" />
-                                <rect x="11" y="22" width="22" height="14" rx="2" strokeWidth="2.5" />
-                                
-                                {/* Dynamic Face Indicator (Pixel character face) */}
-                                <circle cx="17" cy="27" r="1.5" fill="white" />
-                                <circle cx="27" cy="27" r="1.5" fill="white" />
-                                <line x1="19" y1="31" x2="25" y2="31" />
-                                
-                                {/* Little legs walking loop */}
-                                <line x1="16" y1="39" x2="14" y2="45" className="animate-leg-left" />
-                                <line x1="28" y1="39" x2="30" y2="45" className="animate-leg-right" />
-                                
-                                {/* Little antenna flash lights */}
-                                <circle cx="38" cy="12" r="1" fill="#fff" />
-                              </svg>
-                            </div>
-                          ) : (
-                            <div className="w-10 sm:w-12 h-10 sm:h-12" /> // layout spacer
+                        {/* Play Store Download Badge and Character Mascot on right side */}
+                        <div className="flex items-center gap-4 shrink-0 h-16 relative">
+                          {item.playStoreUrl && (
+                            <a
+                              href={item.playStoreUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
+                              className="block h-9 sm:h-11 hover:scale-[1.08] active:scale-95 transition-all duration-200 select-none z-30 shrink-0 mr-1 sm:mr-3"
+                              title="Get MWD Pro on Google Play Store"
+                            >
+                              <img 
+                                src={googlePlayBadge} 
+                                alt="Get MWD Pro on Google Play" 
+                                className="h-full w-auto object-contain rounded border border-zinc-850 hover:border-zinc-700 transition-all duration-200" 
+                                referrerPolicy="no-referrer"
+                              />
+                            </a>
                           )}
+
+                          <div className="flex items-center gap-3 shrink-0 relative">
+                            {/* MASCOT CHOP: Appears when index is hovered exactly like in Vercel video! */}
+                            {isHovered ? (
+                              <div className="mr-2 sm:mr-6 animate-char-float filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300" id="character-mascot-icon">
+                                <svg
+                                  className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                                  viewBox="0 0 48 48"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  {/* Walk cycle / bouncy antenna line */}
+                                  <path d="M37 14 L30 19" />
+                                  <circle cx="38" cy="12" r="2" fill="white" className="animate-pulse" />
+                                  
+                                  {/* Computer Screen Frame (Styled like retro Vercel box mascot) */}
+                                  <rect x="8" y="19" width="28" height="20" rx="4" fill="#000" />
+                                  <rect x="11" y="22" width="22" height="14" rx="2" strokeWidth="2.5" />
+                                  
+                                  {/* Dynamic Face Indicator (Pixel character face) */}
+                                  <circle cx="17" cy="27" r="1.5" fill="white" />
+                                  <circle cx="27" cy="27" r="1.5" fill="white" />
+                                  <line x1="19" y1="31" x2="25" y2="31" />
+                                  
+                                  {/* Little legs walking loop */}
+                                  <line x1="16" y1="39" x2="14" y2="45" className="animate-leg-left" />
+                                  <line x1="28" y1="39" x2="30" y2="45" className="animate-leg-right" />
+                                  
+                                  {/* Little antenna flash lights */}
+                                  <circle cx="38" cy="12" r="1" fill="#fff" />
+                                </svg>
+                              </div>
+                            ) : (
+                              <div className="w-10 sm:w-12 h-10 sm:h-12" /> // layout spacer
+                            )}
+                          </div>
                         </div>
 
                       </div>
