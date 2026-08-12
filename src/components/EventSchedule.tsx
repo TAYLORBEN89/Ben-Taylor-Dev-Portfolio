@@ -4,7 +4,7 @@ import { Calendar, MapPin, Users, Flame, Clock, Radio, ChevronRight, ToggleLeft 
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function EventSchedule() {
-  const [selectedCity, setSelectedCity] = useState<string | null>('Hey Austin');
+  const [selectedCity, setSelectedCity] = useState<string | null>('Trumpty Dumpty');
   const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 8, minutes: 42, seconds: 15 });
 
   // Dynamically update countdown timer to keep dashboard live
@@ -29,13 +29,13 @@ export default function EventSchedule() {
 
   const cities: CitySchedule[] = [
     {
-      name: 'Hey Austin',
-      date: 'HAY',
+      name: 'Master Mounts',
+      date: 'MMNT',
       timeUTC: 'ONLINE',
-      venue: 'heyaustin.vercel.app',
+      venue: 'master-mounts-installations.pages.dev',
       status: 'upcoming',
-      speakers: ['Austin', 'Vercel Deployer'],
-      track: 'Conversational LLMs'
+      speakers: ['AV Lead'],
+      track: 'Audio Visual'
     },
     {
       name: 'Trumpty Dumpty',
@@ -76,9 +76,8 @@ export default function EventSchedule() {
   ];
 
   const sessionsByCity: Record<string, EventSession[]> = {
-    'Hey Austin': [
-      { id: 'hey-1', title: 'Interactive Conversational Interface with Custom System Prompts', speaker: 'Austin', speakerRole: 'Lead Architect', time: 'DEPLOYED', tag: 'LLM Systems', capacity: 'Active' },
-      { id: 'hey-2', title: 'Deploying High-Fidelity React Interfaces to Vercel Serverless Edge', speaker: 'Vercel Deployer', speakerRole: 'Edge Architect', time: 'ONLINE', tag: 'Infrastructures', capacity: 'Online' }
+    'Master Mounts': [
+      { id: 'mmnt-1', title: 'Professional Audio and Visual Installation Site', speaker: 'AV Lead', speakerRole: 'Principal', time: 'DEPLOYED', tag: 'Business Site', capacity: 'Active' }
     ],
     'Trumpty Dumpty': [
       { id: 'trmp-1', title: 'Generative Comedy and Gamified Meme Physics Pipelines', speaker: 'Meme Engineer', speakerRole: 'Media Lead', time: 'DEPLOYED', tag: 'Meme Engine', capacity: 'Active' }
