@@ -47,15 +47,6 @@ export default function EventSchedule() {
       track: 'Generative Humor'
     },
     {
-      name: 'Karolying Leavitt',
-      date: 'KRL',
-      timeUTC: 'ONLINE',
-      venue: 'karolyingleavitt.vercel.app',
-      status: 'upcoming',
-      speakers: ['Karolying'],
-      track: 'Decentralized AI Agents'
-    },
-    {
       name: 'Shaggy Coin',
       date: 'SHAG',
       timeUTC: 'ONLINE',
@@ -81,9 +72,6 @@ export default function EventSchedule() {
     ],
     'Trumpty Dumpty': [
       { id: 'trmp-1', title: 'Generative Comedy and Gamified Meme Physics Pipelines', speaker: 'Meme Engineer', speakerRole: 'Media Lead', time: 'DEPLOYED', tag: 'Meme Engine', capacity: 'Active' }
-    ],
-    'Karolying Leavitt': [
-      { id: 'krl-1', title: 'Political AI Assistant & Decentralized Media Synthesizer', speaker: 'Karolying', speakerRole: 'Lead Designer', time: 'DEPLOYED', tag: 'Agentic Workflows', capacity: 'Online' }
     ],
     'Shaggy Coin': [
       { id: 'shag-1', title: 'Zoinks! Scaling Memetic Blockchain Assets with Speed & Humor', speaker: 'Zoinks Devs', speakerRole: 'Asset Planners', time: 'DEPLOYED', tag: 'Crypto Assets', capacity: 'Active' }

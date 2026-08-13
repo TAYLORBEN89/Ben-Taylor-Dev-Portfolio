@@ -14,7 +14,6 @@ export default function App() {
     { id: '6', title: 'MWD Pro', subtext: 'compessential.com', code: 'MWD', playStoreUrl: 'https://play.google.com/store/apps/details?id=com.mwdpro.app&utm_source=na_Med' },
     { id: '8', title: 'Master Mounts', subtext: 'master-mounts-installations.pages.dev', code: 'MMNT' },
     { id: '2', title: 'Trumpty Dumpty', subtext: 'trumptydumpty.vercel.app', code: 'TDMP' },
-    { id: '3', title: 'Karolying Leavitt', subtext: 'karolyingleavitt.vercel.app', code: 'KRL' },
     { id: '4', title: 'Shaggy Coin', subtext: 'shaggycoin.vercel.app', code: 'SHAG' },
     { id: '5', title: 'Wavy Gravy', subtext: 'wavygravy.vercel.app', code: 'WAVY' }
   ];
