@@ -8,6 +8,36 @@ interface VercelShipSelectorProps {
   onSelectItem?: (item: VercelShipItem) => void;
 }
 
+function ComingSoonStoreBadge({ store }: { store: 'play' | 'apple' }) {
+  const isPlay = store === 'play';
+
+  return (
+    <div
+      className="flex items-center gap-1.5 h-8 sm:h-9 px-2 sm:px-2.5 rounded border border-zinc-700 bg-black select-none shrink-0"
+      title={`${isPlay ? 'Google Play' : 'App Store'} — Coming Soon`}
+    >
+      {isPlay ? (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.6 2.4 14.2 12 3.6 21.6V2.4Z" fill="#34A853" />
+          <path d="M14.2 12 17.8 8.7 6.2 1.6 14.2 12Z" fill="#FBBC04" />
+          <path d="M14.2 12 6.2 22.4 17.8 15.3 14.2 12Z" fill="#EA4335" />
+          <path d="M17.8 8.7 21.1 10.6c.9.5.9 1.8 0 2.3L17.8 15.3 14.2 12l3.6-3.3Z" fill="#4285F4" />
+        </svg>
+      ) : (
+        <svg className="w-4 h-4 shrink-0 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M16.37 12.86c.03 3.28 2.88 4.37 2.91 4.39-.02.08-.45 1.56-1.49 3.08-.9 1.32-1.84 2.63-3.31 2.66-1.46.03-1.93-.86-3.59-.86-1.67 0-2.18.83-3.56.89-1.43.06-2.52-1.43-3.43-2.74C2.16 17.2.73 12.27 2.64 8.94c.95-1.65 2.65-2.69 4.49-2.72 1.4-.03 2.72.94 3.58.94.85 0 2.45-1.16 4.14-.99.7.03 2.68.28 3.95 2.15-.1.06-2.36 1.38-2.33 4.54ZM13.5 4.3c.8-.9 2.11-1.59 3.2-1.63.14 1.27-.37 2.55-1.13 3.46-.75.92-1.99 1.64-3.21 1.54-.16-1.25.45-2.55 1.14-3.37Z" />
+        </svg>
+      )}
+      <div className="flex flex-col leading-none">
+        <span className="text-[7px] font-mono tracking-[0.14em] text-lime-400 uppercase">Coming Soon</span>
+        <span className="text-[10px] sm:text-[11px] font-semibold text-white mt-0.5">
+          {isPlay ? 'Google Play' : 'App Store'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function VercelShipSelector({ items, onSelectItem }: VercelShipSelectorProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number>(0);
 
@@ -88,8 +118,8 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                           </span>
                         </div>
 
-                        {/* Play Store Download Badge and Character Mascot on right side */}
-                        <div className="flex items-center gap-4 shrink-0 h-16 relative">
+                        {/* Store badges and Character Mascot on right side */}
+                        <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-h-16 relative">
                           {item.playStoreUrl && (
                             <a
                               href={item.playStoreUrl}
@@ -108,6 +138,14 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                                 referrerPolicy="no-referrer"
                               />
                             </a>
+                          )}
+
+                          {item.comingSoonStores && item.comingSoonStores.length > 0 && (
+                            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-1.5 mr-1 sm:mr-2 z-30">
+                              {item.comingSoonStores.map((store) => (
+                                <ComingSoonStoreBadge key={store} store={store} />
+                              ))}
+                            </div>
                           )}
 
                           <div className="flex items-center gap-3 shrink-0 relative">

@@ -39,5 +39,6 @@ export interface VercelShipItem {
   subtext: string;
   code: string;
   playStoreUrl?: string;
+  comingSoonStores?: Array<'play' | 'apple'>;
 }
 
