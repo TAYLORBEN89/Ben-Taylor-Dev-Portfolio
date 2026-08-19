@@ -13,11 +13,11 @@ function ComingSoonStoreBadge({ store }: { store: 'play' | 'apple'; key?: React.
 
   return (
     <div
-      className="flex items-center gap-1 h-7 sm:h-9 px-1.5 sm:px-2.5 rounded border border-zinc-700 bg-black select-none shrink-0"
+      className="flex items-center gap-1.5 h-7 sm:h-9 px-2 sm:px-2.5 rounded border border-zinc-700 bg-black select-none shrink-0"
       title={`${isPlay ? 'Google Play' : 'App Store'} — Coming Soon`}
     >
       {isPlay ? (
-        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3.6 2.4 14.2 12 3.6 21.6V2.4Z" fill="#34A853" />
           <path d="M14.2 12 17.8 8.7 6.2 1.6 14.2 12Z" fill="#FBBC04" />
           <path d="M14.2 12 6.2 22.4 17.8 15.3 14.2 12Z" fill="#EA4335" />
@@ -99,21 +99,21 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                       id={`vercel-ship-row-${item.id}`}
                     >
 
-                      <div className="flex flex-row items-center justify-between gap-2 sm:gap-3 py-3.5 px-3 sm:px-5 md:py-5 md:px-8 relative z-10 min-w-0">
+                      <div className="flex flex-col gap-3 py-4 px-3 sm:px-5 md:flex-row md:items-center md:gap-4 md:py-5 md:px-8 relative z-10 min-w-0">
                         <div 
                           onClick={() => {
                             const url = item.subtext.startsWith('http') ? item.subtext : `https://${item.subtext}`;
                             window.open(url, '_blank');
                           }}
-                          className="min-w-0 flex-1 flex flex-col justify-center sm:flex-row sm:items-baseline gap-0.5 sm:gap-3 cursor-pointer group/link"
+                          className="min-w-0 w-full md:flex-1 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 cursor-pointer group/link"
                           title={`Launch ${item.title} (${item.subtext})`}
                         >
-                          <h3 className={`font-retro tracking-wide text-[clamp(1.35rem,6.2vw,4.5rem)] transition-all duration-300 leading-none uppercase break-words ${
+                          <h3 className={`font-retro tracking-wide text-[clamp(1.65rem,8vw,4.5rem)] transition-all duration-300 leading-none uppercase break-words ${
                             isHovered ? 'text-white opacity-100' : 'text-zinc-500 opacity-40'
                           } group-hover/link:text-white`}>
                             {item.title}
                           </h3>
-                          <span className={`font-mono font-medium text-[clamp(0.6rem,2.5vw,1.125rem)] tracking-normal transition-all duration-300 min-w-0 max-w-full truncate ${
+                          <span className={`font-mono font-medium text-[clamp(0.65rem,2.8vw,1.125rem)] tracking-normal transition-all duration-300 min-w-0 max-w-full truncate ${
                             isHovered ? 'text-zinc-400 opacity-100' : 'text-zinc-500 opacity-40'
                           } group-hover/link:text-zinc-100`}>
                             — {item.subtext}
@@ -121,7 +121,7 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                         </div>
 
                         {(item.playStoreUrl || (item.comingSoonStores && item.comingSoonStores.length > 0)) && (
-                          <div className="flex flex-col items-end justify-center gap-1 shrink-0 sm:flex-row sm:items-center sm:gap-1.5">
+                          <div className="flex flex-wrap items-center gap-1.5 w-full min-w-0 md:w-auto md:shrink-0 md:justify-end">
                             {item.playStoreUrl && (
                               <a
                                 href={item.playStoreUrl}
@@ -130,7 +130,7 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                                 onClick={(e) => {
                                   e.stopPropagation();
                                 }}
-                                className="block h-7 sm:h-10 md:h-11 w-auto max-w-[112px] sm:max-w-[160px] hover:scale-[1.04] active:scale-95 transition-all duration-200 select-none z-30"
+                                className="block h-8 sm:h-10 md:h-11 max-w-[140px] sm:max-w-[160px] hover:scale-[1.04] active:scale-95 transition-all duration-200 select-none z-30"
                                 title="Get MWD Pro on Google Play Store"
                               >
                                 <img 
