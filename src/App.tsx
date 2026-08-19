@@ -38,7 +38,7 @@ export default function App() {
 
       {/* Header utility bar (Compact, Humility constraints, No margins clutters) */}
       <header className="border-b border-zinc-900/60 bg-black/80 backdrop-blur-md relative z-40 sticky top-0" id="header-bar">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 min-w-0">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 min-w-0 text-center sm:text-left">
           <div className="min-w-0">
             <span className="font-extrabold text-[11px] sm:text-sm tracking-wide sm:tracking-widest text-white block uppercase break-words">BEN TAYLOR DEV PORTFOLIO</span>
             <span className="text-[9px] font-mono text-zinc-500 tracking-wider uppercase block">Creative Engineering • 2026</span>
