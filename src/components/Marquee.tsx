@@ -26,7 +26,7 @@ export default function Marquee({ items }: MarqueeProps) {
   const repeatedItems = [...mapItems, ...mapItems, ...mapItems, ...mapItems];
 
   return (
-    <div className="w-full bg-black border-y border-zinc-900/80 overflow-hidden relative py-4 z-10" id="marquee-banner">
+    <div className="w-full max-w-[100vw] bg-black border-y border-zinc-900/80 overflow-hidden relative py-4 z-10" id="marquee-banner">
       {/* Absolute Side Shadows for Sleek Border Blends */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />

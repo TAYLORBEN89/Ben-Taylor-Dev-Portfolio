@@ -8,12 +8,12 @@ interface VercelShipSelectorProps {
   onSelectItem?: (item: VercelShipItem) => void;
 }
 
-function ComingSoonStoreBadge({ store }: { store: 'play' | 'apple' }) {
+function ComingSoonStoreBadge({ store }: { store: 'play' | 'apple'; key?: React.Key }) {
   const isPlay = store === 'play';
 
   return (
     <div
-      className="flex items-center gap-1.5 h-8 sm:h-9 px-2 sm:px-2.5 rounded border border-zinc-700 bg-black select-none shrink-0"
+      className="flex items-center gap-1.5 h-7 sm:h-9 px-2 sm:px-2.5 rounded border border-zinc-700 bg-black select-none shrink-0"
       title={`${isPlay ? 'Google Play' : 'App Store'} — Coming Soon`}
     >
       {isPlay ? (
@@ -45,8 +45,8 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
   const activeItem = items[hoveredIndex] || items[0] || { id: '0', title: 'Ship', subtext: '', code: 'S' };
 
   return (
-    <div className="w-full text-white pt-0 pb-10 px-4 md:px-8" id="vercel-ship-selector-component">
-      <div className="w-full mx-auto">
+    <div className="w-full max-w-[100vw] min-w-0 text-white pt-0 pb-8 sm:pb-10 px-3 sm:px-4 md:px-8" id="vercel-ship-selector-component">
+      <div className="w-full min-w-0 mx-auto">
         
         {/* VERCEL SHIP NAV COMPOSER BOARD */}
         <div className="relative">
@@ -87,107 +87,91 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                         setHoveredIndex(index);
                         if (onSelectItem) onSelectItem(item);
                       }}
-                      className={`relative w-full transition-all duration-150 select-none border-2 overflow-hidden ${
+                      onFocus={() => {
+                        setHoveredIndex(index);
+                        if (onSelectItem) onSelectItem(item);
+                      }}
+                      className={`relative w-full min-w-0 transition-colors duration-150 select-none border-2 overflow-hidden ${
                         isHovered 
-                          ? 'bg-transparent border-white z-10 scale-[1.01]' 
+                          ? 'bg-transparent border-white z-10 md:scale-[1.01]' 
                           : 'bg-transparent border-zinc-900/40'
                       }`}
                       id={`vercel-ship-row-${item.id}`}
                     >
 
-                      {/* Flex wrapper for the big text line */}
-                      <div className="flex items-center justify-between pr-4 md:pr-10 relative z-10">
+                      <div className="flex flex-col gap-3 py-4 px-3 sm:px-5 md:flex-row md:items-center md:gap-4 md:py-5 md:px-8 relative z-10 min-w-0">
                         <div 
                           onClick={() => {
                             const url = item.subtext.startsWith('http') ? item.subtext : `https://${item.subtext}`;
                             window.open(url, '_blank');
                           }}
-                          className="flex-1 py-5 pl-6 md:pl-10 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 cursor-pointer group/link"
+                          className="min-w-0 w-full md:flex-1 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 cursor-pointer group/link"
                           title={`Launch ${item.title} (${item.subtext})`}
                         >
-                          {/* Static interactive list line matching video */}
-                          <h3 className={`font-retro tracking-wide text-3xl sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-300 leading-none uppercase ${
+                          <h3 className={`font-retro tracking-wide text-[clamp(1.65rem,8vw,4.5rem)] transition-all duration-300 leading-none uppercase break-words ${
                             isHovered ? 'text-white opacity-100' : 'text-zinc-500 opacity-40'
                           } group-hover/link:text-white`}>
                             {item.title}
                           </h3>
-                          <span className={`font-mono font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-normal transition-all duration-300 opacity-80 ${
-                            isHovered ? 'text-zinc-400 opacity-100' : 'text-zinc-650 opacity-20'
-                          } group-hover/link:text-zinc-100 truncate`}>
+                          <span className={`font-mono font-medium text-[clamp(0.65rem,2.8vw,1.125rem)] tracking-normal transition-all duration-300 min-w-0 max-w-full truncate ${
+                            isHovered ? 'text-zinc-400 opacity-100' : 'text-zinc-500 opacity-40'
+                          } group-hover/link:text-zinc-100`}>
                             — {item.subtext}
                           </span>
                         </div>
 
-                        {/* Store badges and Character Mascot on right side */}
-                        <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-h-16 relative">
-                          {item.playStoreUrl && (
-                            <a
-                              href={item.playStoreUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                              }}
-                              className="block h-9 sm:h-11 hover:scale-[1.08] active:scale-95 transition-all duration-200 select-none z-30 shrink-0 mr-1 sm:mr-3"
-                              title="Get MWD Pro on Google Play Store"
-                            >
-                              <img 
-                                src={googlePlayBadge} 
-                                alt="Get MWD Pro on Google Play" 
-                                className="h-full w-auto object-contain rounded border border-zinc-850 hover:border-zinc-700 transition-all duration-200" 
-                                referrerPolicy="no-referrer"
-                              />
-                            </a>
-                          )}
-
-                          {item.comingSoonStores && item.comingSoonStores.length > 0 && (
-                            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-1.5 mr-1 sm:mr-2 z-30">
-                              {item.comingSoonStores.map((store) => (
-                                <ComingSoonStoreBadge key={store} store={store} />
-                              ))}
-                            </div>
-                          )}
-
-                          <div className="flex items-center gap-3 shrink-0 relative">
-                            {/* MASCOT CHOP: Appears when index is hovered exactly like in Vercel video! */}
-                            {isHovered ? (
-                              <div className="mr-2 sm:mr-6 animate-char-float filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300" id="character-mascot-icon">
-                                <svg
-                                  className="w-10 h-10 sm:w-12 sm:h-12 text-white"
-                                  viewBox="0 0 48 48"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="3"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                >
-                                  {/* Walk cycle / bouncy antenna line */}
-                                  <path d="M37 14 L30 19" />
-                                  <circle cx="38" cy="12" r="2" fill="white" className="animate-pulse" />
-                                  
-                                  {/* Computer Screen Frame (Styled like retro Vercel box mascot) */}
-                                  <rect x="8" y="19" width="28" height="20" rx="4" fill="#000" />
-                                  <rect x="11" y="22" width="22" height="14" rx="2" strokeWidth="2.5" />
-                                  
-                                  {/* Dynamic Face Indicator (Pixel character face) */}
-                                  <circle cx="17" cy="27" r="1.5" fill="white" />
-                                  <circle cx="27" cy="27" r="1.5" fill="white" />
-                                  <line x1="19" y1="31" x2="25" y2="31" />
-                                  
-                                  {/* Little legs walking loop */}
-                                  <line x1="16" y1="39" x2="14" y2="45" className="animate-leg-left" />
-                                  <line x1="28" y1="39" x2="30" y2="45" className="animate-leg-right" />
-                                  
-                                  {/* Little antenna flash lights */}
-                                  <circle cx="38" cy="12" r="1" fill="#fff" />
-                                </svg>
-                              </div>
-                            ) : (
-                              <div className="w-10 sm:w-12 h-10 sm:h-12" /> // layout spacer
+                        {(item.playStoreUrl || (item.comingSoonStores && item.comingSoonStores.length > 0)) && (
+                          <div className="flex flex-wrap items-center gap-1.5 w-full min-w-0 md:w-auto md:shrink-0 md:justify-end">
+                            {item.playStoreUrl && (
+                              <a
+                                href={item.playStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                }}
+                                className="block h-8 sm:h-10 md:h-11 max-w-[140px] sm:max-w-[160px] hover:scale-[1.04] active:scale-95 transition-all duration-200 select-none z-30"
+                                title="Get MWD Pro on Google Play Store"
+                              >
+                                <img 
+                                  src={googlePlayBadge} 
+                                  alt="Get MWD Pro on Google Play" 
+                                  className="h-full w-auto max-w-full object-contain rounded border border-zinc-850 hover:border-zinc-700 transition-all duration-200" 
+                                  referrerPolicy="no-referrer"
+                                />
+                              </a>
                             )}
-                          </div>
-                        </div>
 
+                            {item.comingSoonStores?.map((store) => (
+                              <ComingSoonStoreBadge key={store} store={store} />
+                            ))}
+                          </div>
+                        )}
+
+                        {isHovered && (
+                          <div className="hidden lg:block shrink-0 animate-char-float filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]" id="character-mascot-icon">
+                            <svg
+                              className="w-12 h-12 text-white"
+                              viewBox="0 0 48 48"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M37 14 L30 19" />
+                              <circle cx="38" cy="12" r="2" fill="white" className="animate-pulse" />
+                              <rect x="8" y="19" width="28" height="20" rx="4" fill="#000" />
+                              <rect x="11" y="22" width="22" height="14" rx="2" strokeWidth="2.5" />
+                              <circle cx="17" cy="27" r="1.5" fill="white" />
+                              <circle cx="27" cy="27" r="1.5" fill="white" />
+                              <line x1="19" y1="31" x2="25" y2="31" />
+                              <line x1="16" y1="39" x2="14" y2="45" className="animate-leg-left" />
+                              <line x1="28" y1="39" x2="30" y2="45" className="animate-leg-right" />
+                              <circle cx="38" cy="12" r="1" fill="#fff" />
+                            </svg>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

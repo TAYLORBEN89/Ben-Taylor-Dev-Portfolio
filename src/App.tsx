@@ -2,11 +2,8 @@ import React from 'react';
 import { VercelShipItem } from './types';
 // @ts-ignore
 import myAvatar from './assets/images/my_avatar.jpg';
-// @ts-ignore
-import googlePlayBadge from './utils/google-play-badge.png';
 import Marquee from './components/Marquee';
 import VercelShipSelector from './components/VercelShipSelector';
-import { Download } from 'lucide-react';
 
 export default function App() {
   // Dynamic content for Vercel Ship clone menu selector
@@ -19,7 +16,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-lime-500 selection:text-black overflow-x-hidden font-sans">
+    <div className="relative min-h-dvh w-full max-w-[100vw] overflow-x-clip bg-black text-white selection:bg-lime-500 selection:text-black font-sans">
       
       {/* Custom Header Graphic Banner (Using the whole image) */}
       <div className="w-full h-44 sm:h-60 md:h-72 lg:h-80 relative overflow-hidden border-b border-zinc-900 select-none bg-zinc-950 flex items-end">
@@ -36,17 +33,15 @@ export default function App() {
       </div>
 
       {/* Visual background ambient details */}
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-lime-500/5 rounded-full blur-[120px] pointer-events-none z-0" />
-      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-0 left-1/4 w-[min(400px,100vw)] h-[400px] bg-lime-500/5 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 right-0 w-[min(500px,100vw)] h-[500px] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none z-0" />
 
       {/* Header utility bar (Compact, Humility constraints, No margins clutters) */}
       <header className="border-b border-zinc-900/60 bg-black/80 backdrop-blur-md relative z-40 sticky top-0" id="header-bar">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div>
-              <span className="font-extrabold text-sm tracking-widest text-white block uppercase">BEN TAYLOR DEV PORTFOLIO</span>
-              <span className="text-[9px] font-mono text-zinc-500 tracking-wider uppercase block">Creative Engineering • 2026</span>
-            </div>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 min-w-0">
+          <div className="min-w-0">
+            <span className="font-extrabold text-[11px] sm:text-sm tracking-wide sm:tracking-widest text-white block uppercase break-words">BEN TAYLOR DEV PORTFOLIO</span>
+            <span className="text-[9px] font-mono text-zinc-500 tracking-wider uppercase block">Creative Engineering • 2026</span>
           </div>
 
           {/* Navigation Links Removed per request */}
@@ -54,14 +49,14 @@ export default function App() {
       </header>
 
       {/* Hero Header Space */}
-      <section className="relative z-10 pt-6 sm:pt-10 pb-4 px-4 max-w-5xl mx-auto text-center" id="hero-title-segment">
-        <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-mono max-w-3xl mx-auto leading-relaxed">
+      <section className="relative z-10 pt-5 sm:pt-10 pb-3 sm:pb-4 px-3 sm:px-4 max-w-5xl mx-auto text-center" id="hero-title-segment">
+        <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-mono max-w-3xl mx-auto leading-relaxed break-words">
           Designing and deploying stellar custom applications, business landing pages, responsive mobile interfaces, seamlessly synced data, and user-friendly content management portals.
         </p>
       </section>
 
       {/* RENDER DYNAMIC VERCEL SHIP PORTFOLIO BOARD */}
-      <section className="relative z-10 pt-0 pb-20" id="vercel-menu-playground">
+      <section className="relative z-10 pt-0 pb-10 sm:pb-16 md:pb-20 min-w-0" id="vercel-menu-playground">
         <VercelShipSelector
           items={shipItems}
           onSelectItem={() => {}}
@@ -72,7 +67,7 @@ export default function App() {
       <Marquee items={shipItems} />
 
       {/* Clean minimal padding separator */}
-      <div className="pb-24" />
+      <div className="pb-[max(4rem,env(safe-area-inset-bottom))]" />
 
     </div>
   );
