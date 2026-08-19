@@ -45,8 +45,8 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
   const activeItem = items[hoveredIndex] || items[0] || { id: '0', title: 'Ship', subtext: '', code: 'S' };
 
   return (
-    <div className="w-full max-w-[100vw] min-w-0 text-white pt-0 pb-8 sm:pb-10 px-3 sm:px-4 md:px-8" id="vercel-ship-selector-component">
-      <div className="w-full min-w-0 mx-auto">
+    <div className="w-full max-w-[100vw] min-w-0 text-white pt-0 pb-8 sm:pb-10" id="vercel-ship-selector-component">
+      <div className="w-full min-w-0 mx-auto px-4 sm:px-6 md:px-10">
         
         {/* VERCEL SHIP NAV COMPOSER BOARD */}
         <div className="relative">
@@ -99,7 +99,7 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                       id={`vercel-ship-row-${item.id}`}
                     >
 
-                      <div className="flex flex-row items-center justify-between gap-2 sm:gap-3 py-3.5 px-3 sm:px-5 md:py-5 md:px-8 relative z-10 min-w-0">
+                      <div className="flex flex-row items-center justify-between gap-2 sm:gap-3 py-3.5 md:py-5 relative z-10 min-w-0">
                         <div 
                           onClick={() => {
                             const url = item.subtext.startsWith('http') ? item.subtext : `https://${item.subtext}`;
