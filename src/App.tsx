@@ -12,7 +12,7 @@ export default function App() {
   // Dynamic content for Vercel Ship clone menu selector
   const shipItems: VercelShipItem[] = [
     { id: '6', title: 'MWD Pro', subtext: 'compessential.com', code: 'MWD', playStoreUrl: 'https://play.google.com/store/apps/details?id=com.mwdpro.app&utm_source=na_Med' },
-    { id: '8', title: 'Master Mounts', subtext: 'master-mounts-installations.pages.dev', code: 'MMNT', comingSoonStores: ['play', 'apple'] },
+    { id: '8', title: 'Master Mounts', subtext: 'master-mounts-installations.pages.dev', code: 'MMNT', comingSoonStores: ['play'] },
     { id: '2', title: 'Trumpty Dumpty', subtext: 'trumptydumpty.vercel.app', code: 'TDMP' },
     { id: '4', title: 'Shaggy Coin', subtext: 'shaggycoin.vercel.app', code: 'SHAG' },
     { id: '5', title: 'Wavy Gravy', subtext: 'wavygravy.vercel.app', code: 'WAVY' }

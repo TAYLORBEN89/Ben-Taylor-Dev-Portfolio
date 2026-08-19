@@ -69,7 +69,7 @@ export default function EventSchedule() {
   const sessionsByCity: Record<string, EventSession[]> = {
     'Master Mounts': [
       { id: 'mmnt-1', title: 'Professional Audio and Visual Installation Site', speaker: 'AV Lead', speakerRole: 'Principal', time: 'DEPLOYED', tag: 'Business Site', capacity: 'Active' },
-      { id: 'mmnt-2', title: 'Coming Soon on Google Play and the App Store', speaker: 'AV Lead', speakerRole: 'Principal', time: 'SOON', tag: 'Mobile Apps', capacity: 'Coming Soon' }
+      { id: 'mmnt-2', title: 'Coming Soon on Google Play', speaker: 'AV Lead', speakerRole: 'Principal', time: 'SOON', tag: 'Mobile Apps', capacity: 'Coming Soon' }
     ],
     'Trumpty Dumpty': [
       { id: 'trmp-1', title: 'Generative Comedy and Gamified Meme Physics Pipelines', speaker: 'Meme Engineer', speakerRole: 'Media Lead', time: 'DEPLOYED', tag: 'Meme Engine', capacity: 'Active' }
