@@ -43,6 +43,67 @@ function openProject(item: VercelShipItem) {
   window.open(url, '_blank');
 }
 
+function StoreBadges({ item }: { item: VercelShipItem }) {
+  if (!item.playStoreUrl && !(item.comingSoonStores && item.comingSoonStores.length > 0)) {
+    return null;
+  }
+
+  return (
+    <>
+      {item.playStoreUrl && (
+        <a
+          href={item.playStoreUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="block h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-none hover:scale-[1.08] active:scale-95 transition-all duration-200 select-none z-30 shrink-0"
+          title="Get MWD Pro on Google Play Store"
+        >
+          <img
+            src={googlePlayBadge}
+            alt="Get MWD Pro on Google Play"
+            className="h-full w-auto max-w-full object-contain rounded border border-zinc-850 hover:border-zinc-700 transition-all duration-200"
+            referrerPolicy="no-referrer"
+          />
+        </a>
+      )}
+
+      {item.comingSoonStores?.map((store) => (
+        <ComingSoonStoreBadge key={store} store={store} />
+      ))}
+    </>
+  );
+}
+
+function WalkingTvMascot() {
+  return (
+    <div className="animate-char-float filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300 shrink-0" id="character-mascot-icon">
+      <svg
+        className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M37 14 L30 19" />
+        <circle cx="38" cy="12" r="2" fill="white" className="animate-pulse" />
+        <rect x="8" y="19" width="28" height="20" rx="4" fill="#000" />
+        <rect x="11" y="22" width="22" height="14" rx="2" strokeWidth="2.5" />
+        <circle cx="17" cy="27" r="1.5" fill="white" />
+        <circle cx="27" cy="27" r="1.5" fill="white" />
+        <line x1="19" y1="31" x2="25" y2="31" />
+        <line x1="16" y1="39" x2="14" y2="45" className="animate-leg-left" />
+        <line x1="28" y1="39" x2="30" y2="45" className="animate-leg-right" />
+        <circle cx="38" cy="12" r="1" fill="#fff" />
+      </svg>
+    </div>
+  );
+}
+
 export default function VercelShipSelector({ items, onSelectItem }: VercelShipSelectorProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number>(0);
   const [armedIndex, setArmedIndex] = useState<number | null>(null);
@@ -133,86 +194,47 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                       id={`vercel-ship-row-${item.id}`}
                     >
 
-                      {/* Flex wrapper for the big text line */}
-                      <div className="flex items-center justify-between gap-2 pr-3 sm:pr-4 md:pr-10 relative z-10 min-w-0">
-                        <div 
-                          onClick={() => handleProjectClick(index, item)}
-                          className="min-w-0 flex-1 py-5 pl-4 sm:pl-6 md:pl-10 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 cursor-pointer group/link"
-                          title={
-                            !prefersHover && armedIndex !== index
-                              ? `Select ${item.title}`
-                              : `Launch ${item.title} (${item.subtext})`
-                          }
-                        >
-                          {/* Static interactive list line matching video */}
-                          <h3 className={`font-retro tracking-wide text-[clamp(1.4rem,6vw,4.5rem)] sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-300 leading-none uppercase min-w-0 ${
-                            isHovered ? 'text-white opacity-100' : 'text-zinc-500 opacity-40'
-                          } group-hover/link:text-white`}>
-                            {item.title}
-                          </h3>
-                          <span className={`font-mono font-medium text-[10px] sm:text-sm md:text-base lg:text-lg tracking-normal transition-all duration-300 opacity-80 min-w-0 max-w-full truncate ${
-                            isHovered ? 'text-zinc-400 opacity-100' : 'text-zinc-650 opacity-20'
-                          } group-hover/link:text-zinc-100`}>
-                            — {item.subtext}
-                          </span>
-                        </div>
+                      <div className="flex items-start sm:items-center justify-between gap-2 pr-3 sm:pr-4 md:pr-10 relative z-10 min-w-0">
+                        <div className="min-w-0 flex-1 py-4 sm:py-5 pl-4 sm:pl-6 md:pl-10">
+                          <div
+                            onClick={() => handleProjectClick(index, item)}
+                            className="min-w-0 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 cursor-pointer group/link"
+                            title={
+                              !prefersHover && armedIndex !== index
+                                ? `Select ${item.title}`
+                                : `Launch ${item.title} (${item.subtext})`
+                            }
+                          >
+                            <h3 className={`font-retro tracking-wide text-5xl sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-300 leading-none uppercase break-words ${
+                              isHovered ? 'text-white opacity-100' : 'text-zinc-500 opacity-40'
+                            } group-hover/link:text-white`}>
+                              {item.title}
+                            </h3>
+                            <span className={`font-mono font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-normal transition-all duration-300 opacity-80 min-w-0 max-w-full truncate ${
+                              isHovered ? 'text-zinc-400 opacity-100' : 'text-zinc-650 opacity-20'
+                            } group-hover/link:text-zinc-100`}>
+                              — {item.subtext}
+                            </span>
+                          </div>
 
-                        {/* Store badges and Character Mascot on right side */}
-                        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 relative">
-                          {item.playStoreUrl && (
-                            <a
-                              href={item.playStoreUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                              }}
-                              className="block h-8 sm:h-11 max-w-[118px] sm:max-w-none hover:scale-[1.08] active:scale-95 transition-all duration-200 select-none z-30 shrink-0"
-                              title="Get MWD Pro on Google Play Store"
-                            >
-                              <img 
-                                src={googlePlayBadge} 
-                                alt="Get MWD Pro on Google Play" 
-                                className="h-full w-auto max-w-full object-contain rounded border border-zinc-850 hover:border-zinc-700 transition-all duration-200" 
-                                referrerPolicy="no-referrer"
-                              />
-                            </a>
-                          )}
-
-                          {item.comingSoonStores && item.comingSoonStores.length > 0 && (
-                            <div className="flex items-center z-30">
-                              {item.comingSoonStores.map((store) => (
-                                <ComingSoonStoreBadge key={store} store={store} />
-                              ))}
+                          {(item.playStoreUrl || (item.comingSoonStores && item.comingSoonStores.length > 0)) && (
+                            <div className="flex sm:hidden items-center gap-2 mt-3">
+                              <StoreBadges item={item} />
                             </div>
                           )}
+                        </div>
+
+                        <div className="flex items-center gap-2 sm:gap-3 shrink-0 relative pt-4 sm:pt-0">
+                          <div className="hidden sm:flex items-center gap-1.5">
+                            <StoreBadges item={item} />
+                          </div>
 
                           {isHovered && (
-                            <div className="hidden sm:block mr-2 md:mr-6 animate-char-float filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300" id="character-mascot-icon">
-                              <svg
-                                className="w-10 h-10 sm:w-12 sm:h-12 text-white"
-                                viewBox="0 0 48 48"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M37 14 L30 19" />
-                                <circle cx="38" cy="12" r="2" fill="white" className="animate-pulse" />
-                                <rect x="8" y="19" width="28" height="20" rx="4" fill="#000" />
-                                <rect x="11" y="22" width="22" height="14" rx="2" strokeWidth="2.5" />
-                                <circle cx="17" cy="27" r="1.5" fill="white" />
-                                <circle cx="27" cy="27" r="1.5" fill="white" />
-                                <line x1="19" y1="31" x2="25" y2="31" />
-                                <line x1="16" y1="39" x2="14" y2="45" className="animate-leg-left" />
-                                <line x1="28" y1="39" x2="30" y2="45" className="animate-leg-right" />
-                                <circle cx="38" cy="12" r="1" fill="#fff" />
-                              </svg>
+                            <div className="mr-1 sm:mr-2 md:mr-6">
+                              <WalkingTvMascot />
                             </div>
                           )}
                         </div>
-
                       </div>
                     </div>
                   );
