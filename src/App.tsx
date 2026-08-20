@@ -22,7 +22,7 @@ export default function App() {
     <div className="relative min-h-dvh w-full max-w-full overflow-x-clip bg-black text-white selection:bg-lime-500 selection:text-black font-sans">
       
       {/* Custom Header Graphic Banner (Using the whole image) */}
-      <div className="w-full aspect-square sm:aspect-auto sm:h-60 md:h-72 lg:h-80 relative overflow-hidden border-b border-zinc-900 select-none bg-zinc-950 flex items-end">
+      <div className="w-full h-44 sm:h-60 md:h-72 lg:h-80 relative overflow-hidden border-b border-zinc-900 select-none bg-zinc-950 flex items-end">
         <img 
           src={myAvatar} 
           alt="Ben Taylor Banner Graphic" 
