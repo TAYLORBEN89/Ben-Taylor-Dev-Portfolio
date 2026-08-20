@@ -205,7 +205,7 @@ export default function VercelShipSelector({ items, onSelectItem }: VercelShipSe
                                 : `Launch ${item.title} (${item.subtext})`
                             }
                           >
-                            <h3 className={`font-retro tracking-wide text-5xl sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-300 leading-none uppercase break-words ${
+                            <h3 className={`font-retro tracking-wide text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-300 leading-none uppercase break-words ${
                               isHovered ? 'text-white opacity-100' : 'text-zinc-500 opacity-40'
                             } group-hover/link:text-white`}>
                               {item.title}
